@@ -29,3 +29,17 @@
 
 ; This would show that the tolorance test fails for small large numbers:
 ;(sqrt-iter 0.000000002000000000000000000000090000000000000000000232323200234 0.0000000000002323234232323234)
+
+(define g-frac 0.01)
+
+(define (my-good-enough? cur-guess next-guess)
+  (if (< (/ (abs (- cur-guess next-guess)) (if (<= cur-guess next-guess) next-guess cur-guess)) g-frac)
+      #t
+      #f)
+  )
+
+(define (my-sqrt-iter guess x)
+  (if (my-good-enough? guess (/ (+ guess (/ x guess)) 2.0))
+      guess
+      (my-sqrt-iter (improve guess x)
+                 x)))
