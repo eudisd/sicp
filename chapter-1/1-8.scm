@@ -1,5 +1,5 @@
 (define (good-enough? guess x)
-  (if (< (abs (- (* guess guess) x)) 0.001)
+  (if (< (abs (- (* guess guess guess) x)) 0.001)
       #t
       #f))
 (define (improve guess x)
